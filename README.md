@@ -1,6 +1,12 @@
 # TaskManagementApp
 Web app to task manager
 
+Instruction to start-up application
+
+1. Application uses Oracle DB. File taskAppDB.sql contains script to create necessary tables before app start-up.
+2. In handleDb/handleDb.go file user login and password to connect to DB must be specified (in func CreateDbObject()).
+3. In Intellij IDEA it was necessary to edit Run/Debug Configurations. There are "Run kind:" option must be set on "Directory".
+
 HTTP API Documentation
 
 1. /projects                                                 - to show all available projects
