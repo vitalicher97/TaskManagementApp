@@ -1,31 +1,31 @@
 package handleDb
 
 import (
+	"../model"
 	"database/sql"
 	_ "github.com/godror/godror"
 	"log"
-	"../model"
 )
 
 var Db *sql.DB
+
 func CreateDbObject() {
 	var err error
 	Db, err = sql.Open("godror",
 		`user="SYSTEM" password="admin" connectString="localhost:1521/taskAppDB"`)
-	if err != nil{
+	if err != nil {
 		log.Fatal(err)
 	}
 
 	err = Db.Ping()
-	if err != nil{
+	if err != nil {
 		log.Fatal(err)
 	}
 
 	//defer db.Close()
 }
 
-
-func CreateData(tableName string, columnValue map[string]string){
+func CreateData(tableName string, columnValue map[string]string) {
 
 	insertSql := "INSERT INTO " + tableName + " ("
 	valuesSql := "VALUES ("
@@ -68,7 +68,6 @@ func CreateData(tableName string, columnValue map[string]string){
 
 }
 
-
 func GetProjects(condition string) []model.Projects {
 
 	var projects model.Projects
@@ -102,7 +101,6 @@ func GetProjects(condition string) []model.Projects {
 	return projectsSlice
 
 }
-
 
 func GetProjectColumns(condition string) []model.ProjectColumns {
 
@@ -140,7 +138,6 @@ func GetProjectColumns(condition string) []model.ProjectColumns {
 
 }
 
-
 func GetTasks(condition string) []model.Tasks {
 
 	var tasks model.Tasks
@@ -172,7 +169,6 @@ func GetTasks(condition string) []model.Tasks {
 	return tasksSlice
 
 }
-
 
 func GetComments(condition string) []model.Comments {
 
@@ -207,7 +203,6 @@ func GetComments(condition string) []model.Comments {
 	return commentsSlice
 
 }
-
 
 func UpdateData(tableName string, columnValue map[string]string, condition string) {
 
@@ -248,7 +243,6 @@ func UpdateData(tableName string, columnValue map[string]string, condition strin
 
 }
 
-
 func DeleteData(tableName string, condition string) {
 
 	deleteSql := "DELETE FROM " + tableName
@@ -278,8 +272,7 @@ func DeleteData(tableName string, condition string) {
 
 }
 
-
-func GetCountAll(tableName string, condition string) int{
+func GetCountAll(tableName string, condition string) int {
 
 	selectSql := "SELECT COUNT(*) FROM " + tableName
 	if condition != "" {

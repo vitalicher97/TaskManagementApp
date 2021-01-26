@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"log"
 	"net/http"
 )
 
@@ -25,5 +26,8 @@ func MainController() {
 	http.HandleFunc("/update/comment/", updateComment)
 	http.HandleFunc("/delete/comment/", deleteCommentById)
 
-	http.ListenAndServe(":8080", nil)
+	err := http.ListenAndServe(":8080", nil)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
